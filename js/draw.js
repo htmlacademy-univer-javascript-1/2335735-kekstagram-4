@@ -61,4 +61,4 @@ function drawImages (photos) {
     }
     bigPicture(photos);
   };
-  export {drawImages};
+export {drawImages};
