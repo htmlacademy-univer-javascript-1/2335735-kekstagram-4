@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 /* eslint-disable no-console */
 import '/js/forms.js';
 import {doFetch} from './fetch.js';
@@ -14,4 +12,4 @@ doFetch(
 
 
 
->>>>>>> Stashed changes
+
