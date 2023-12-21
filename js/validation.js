@@ -15,4 +15,5 @@ const checkValidation = () => {
   }
 };
 
-export { pristine, checkValidation };
+export {pristine, checkValidation};
+

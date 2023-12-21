@@ -1,15 +1,15 @@
 /* eslint-disable no-console */
-import {createPhoto} from '/js/util.js';
 import '/js/forms.js';
-import {drawPictures} from '/js/draw.js';
+import {doFetch} from './fetch.js';
+import {createError} from './util.js';
+import {createArray} from './util.js';
+
+doFetch(
+  createArray,
+  createError,
+  'get');
 
 
-const photos = [];
-for (var i = 0; i < 25; i++){
-  photos[i] = createPhoto(i);
-}
-
-drawPictures(photos);
 
 
 
