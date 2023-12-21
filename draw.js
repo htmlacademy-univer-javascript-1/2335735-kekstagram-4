@@ -4,7 +4,8 @@ document.querySelector('.big-picture').querySelector('.social__comments').remove
 
 function bigPicture(photos) {
   const pictures = document.querySelectorAll('.picture');
-  for (let i = 0; i<pictures.length; i++){
+  console.log(pictures);
+  for (var i = 0; i<pictures.length; i++){
     pictures[i].addEventListener('click', (evt)=> {
       const big = document.querySelector('.big-picture');
       evt.preventDefault();
@@ -13,17 +14,17 @@ function bigPicture(photos) {
       big.querySelector('.big-picture__img').children[0].src = photos[i].url;
       big.querySelector('.likes-count').textContent = photos[i].likes;
       big.querySelector('.comments-count').textContent = photos[i].comments.length;
-
+      console.log(photos[i].comments.length);
       while (big.querySelector('.social__comments').childElementCount !== 0){
         big.querySelector('.social__comments').removeChild(big.querySelector('.social__comments').children[0]);
       }
 
-      for (let comm = 0; comm<photos[i].comments.length;comm++){
+      for (var comm = 0; comm < photos[i].comments.length;comm++){
         const newComment = newComm.cloneNode(true);
         big.querySelector('.social__comments').appendChild(newComment);
       }
 
-      for (let comm = 0; comm<photos[i].comments.length;comm++){
+      for (let comm = 0; comm < photos[i].comments.length;comm++){
         big.querySelector('.social__comments').children[comm].children[0].src = photos[i].comments[comm].avatar;
         big.querySelector('.social__comments').children[comm].children[0].alt = photos[i].comments[comm].name;
         big.querySelector('.social__comments').children[comm].children[1].textContent = photos[i].comments[comm].message;
@@ -46,20 +47,18 @@ function bigPicture(photos) {
   }
 }
 
-function drawPictures (photos) {
-  const picturesContainer = document.querySelector('.pictures');
-  const pictureTemplate = document.querySelector('#picture').content;
-
-  for (let i = 0; i<photos.length; i++){
-    const newPicture = pictureTemplate.cloneNode(true);
-    newPicture.querySelector('a > img').src = photos[i].url;
-    newPicture.children[0].children[0].alt = photos[i].description;
-    newPicture.children[0].children[1].children[1].textContent = photos[i].likes;
-    newPicture.children[0].children[1].children[0].textContent = photos[i].comments.length;
-    picturesContainer.appendChild(newPicture);
-
-  }
-  bigPicture(photos);
-}
-export {drawPictures};
-
+function drawImages (photos) {
+    let imgContainer = document.querySelector('.pictures');
+    let imgTemplate = document.querySelector('#picture').content;
+  
+    for (var i = 0; i<photos.length; i++){
+      var newImage = imgTemplate.cloneNode(true);
+      newImage.querySelector("a > img").src = photos[i].url;
+      newImage.children[0].children[0].alt = photos[i].description;
+      newImage.children[0].children[1].children[1].textContent = photos[i].likes;
+      newImage.children[0].children[1].children[0].textContent = photos[i].comments.length;
+      imgContainer.appendChild(newImage);
+    }
+    bigPicture(photos);
+  };
+export {drawImages};
