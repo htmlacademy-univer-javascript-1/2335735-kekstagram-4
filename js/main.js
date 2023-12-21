@@ -1,15 +1,15 @@
-import {DESCRIPTION, NAME, MESSAGE} from '/js/data.js';
-import {createComment, createImage} from '/js/util.js';
-import {drawImages} from '/js/draw.js';
+/* eslint-disable no-console */
+import {createPhoto} from '/js/util.js';
+import '/js/forms.js';
+import {drawPictures} from '/js/draw.js';
 
 
-let photos = [];
+const photos = [];
 for (var i = 0; i < 25; i++){
-  photos[i] = createImage(i);
+  photos[i] = createPhoto(i);
 }
 
-drawImages(photos);
+drawPictures(photos);
 
-console.log(photos);
 
 

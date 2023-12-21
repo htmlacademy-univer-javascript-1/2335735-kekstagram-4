@@ -1,7 +1,13 @@
-const lengthCheck = function(string, length) {
-  if(string.length <= length){
-    return true;
+const isFitMeeting = function(start, end, meet, duration){
+  const startHM = start.split(':');
+  const endHM = end.split(':');
+  const meetHM = meet.split(':');
+  if (parseInt(startHM[0],10) < parseInt(meetHM[0],10) || parseInt(startHM[0],10) === parseInt(meetHM[0],10) && parseInt(startHM[1],10) < parseInt(meetHM[1],10)){
+    return false;
   }
-  return false;
+  else if ((parseInt(endHM[0],10)-parseInt(meetHM[0],10))*60 + parseInt(endHM[1],10)-parseInt(meetHM[1],10) < duration){
+    return false;
+  }
+  return true;
 };
-lengthCheck('Test', 4);
+isFitMeeting();
