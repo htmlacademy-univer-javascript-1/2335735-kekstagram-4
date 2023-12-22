@@ -3,18 +3,28 @@ const Urls = {
   'POST': 'https://29.javascript.pages.academy/kekstagram'
 };
 
-const doFetch = (onSuccess, onFail, method, body) => {
-  fetch(Urls[method], {
-    method: method,
-    body
-  })
-    .then((response) => response.json())
-    .then((pictures) => {
-      onSuccess(pictures);
+const doFetch = () => fetch(Urls.get)
+  .then((response) => response.json())
+  .then((data) => Promise.resolve(data))
+  .catch(() => Promise.reject());
+
+const sendData = (evt) => {
+  evt.preventDefault();
+  const dataForm = new FormData(evt.target);
+  return fetch(
+    Urls.POST,
+    {
+      method: 'POST',
+      body: dataForm
     })
-    .catch((message) => {
-      onFail(message);
-    });
+    .then((response) => {
+      if (response.ok) {
+        return Promise.resolve();
+      }
+      throw new Error();
+    }
+    )
+    .catch(() => Promise.reject());
 };
 
-export {doFetch};
+export {doFetch, sendData};
