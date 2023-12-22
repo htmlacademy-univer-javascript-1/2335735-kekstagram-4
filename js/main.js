@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 import {call} from './util.js';
 import primaryCollage from './collage.js';
 import bigPictureState from './bigPictureState.js';
@@ -18,4 +16,4 @@ catch (exception) {
 }
 
 
->>>>>>> Stashed changes
+

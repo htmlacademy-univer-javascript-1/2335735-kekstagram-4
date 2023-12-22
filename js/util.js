@@ -9,8 +9,8 @@ export const call = async (url, options) => {
 };
 
 export const debounce = (callback, delay = 500) => {
-  var statusTimeout;
-  var latestCallTime;
+  let statusTimeout;
+  let latestCallTime;
 
   return (...rest) => {
     const passedTime = Date.now() - latestCallTime;

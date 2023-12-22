@@ -6,7 +6,7 @@ const filtersNav = document.querySelector('.img-filters');
 const collage = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture');
 const bigPicture = document.querySelector('.big-picture');
-var primaryDate;
+let primaryDate;
 
 const createPicture = (data) => {
   const picture =

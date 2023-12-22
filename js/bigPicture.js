@@ -2,7 +2,7 @@ const bigPicturePreview = document.querySelector('.big-picture__preview');
 const commentsSection = bigPicturePreview.querySelector('.social__comments');
 const commentTemplate = commentsSection.querySelector('.social__comment');
 const loadMoreComments = bigPicturePreview.querySelector('.comments-loader');
-var activeData;
+let activeData;
 
 const creatComment = (data) =>{
   const comment =
