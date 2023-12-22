@@ -4,6 +4,7 @@ import {doFetch} from './fetch.js';
 import {close, showServerErrorMessage} from './forms.js';
 import {filterPictures, showFilters, hideFilters} from './filters.js';
 
+
 doFetch()
   .then((data) => {
     close();
@@ -14,3 +15,4 @@ doFetch()
     hideFilters();
     showServerErrorMessage();
   });
+
