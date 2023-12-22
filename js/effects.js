@@ -38,6 +38,8 @@ const hideSlider = () => {
   effectLevelForm.classList.add('hidden');
 };
 
+hideSlider();
+
 const setCurrentEffect = (effect) => {
   currentEffect = effect;
 };
@@ -95,4 +97,4 @@ effectSlider.noUiSlider.on('update', () => {
   updateImageFilter();
 });
 
-export { hideSlider, setCurrentEffect, updateImageFilter };
+export {hideSlider, setCurrentEffect, updateImageFilter};
