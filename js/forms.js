@@ -1,25 +1,28 @@
-import {pristine} from './validation.js';
+/* eslint-disable*/
+import { pristine } from './validation.js';
 import '/js/hastagValidation.js';
 import '/js/commentValidation.js';
 
-import {hideSlider, setCurrentEffect, updateImageFilter} from '/js/effects.js';
-import {DEFAULT} from '/js/filters.js';
-import {sendData} from './fetch.js';
+import { hideSlider, setCurrentEffect, updateImageFilter } from '/js/effects.js';
+import { DEFAULT } from '/js/filters.js';
+import { sendData } from './fetch.js';
+import { uploadPreview } from './uploadPreview.js';
 
-const MIN_SCALE_VALUE = 25;
-const MAX_SCALE_VALUE = 100;
-const IMAGE_SCALE_STEP = 25;
-
-const uploadImage = document.querySelector('#upload-select-image');
-const imageInputField = document.querySelector('.img-upload__input');
 const imageEdit = document.querySelector('.img-upload__overlay');
-const editorCloseButton = imageEdit.querySelector('.img-upload__cancel');
-const isEscapeKey = (evt) => evt.key === 'Escape';
+const closeEditButton = imageEdit.querySelector('.img-upload__cancel');
+const uploadImage = document.querySelector('#upload-select-image');
+const userImageInput = document.querySelector('.img-upload__input');
 
-const imagePreview = imageEdit.querySelector('.img-upload__preview').children[0];
-const scaleInputField = imageEdit.querySelector('.scale__control--value');
-const scaleDecreaseButton = imageEdit.querySelector('.scale__control--smaller');
-const scaleIncreaseButton = imageEdit.querySelector('.scale__control--bigger');
+const inputScale = imageEdit.querySelector('.scale__control--value');
+const biggerScale = imageEdit.querySelector('.scale__control--smaller');
+const smallerScale = imageEdit.querySelector('.scale__control--bigger');
+const userImagePreview = imageEdit.querySelector('.img-upload__preview').children[0];
+
+const smallestScale = 25;
+const biggestScale = 100;
+const scaleStepValue = 25;
+
+const isEscapeKey = (evt) => evt.key === 'Escape';
 
 let currentSize;
 let messageIsOpen = false;
@@ -41,8 +44,8 @@ const successfullEscapeKey = (evt) => {
 };
 
 const newScale = () => {
-  scaleInputField.value = `${currentSize}%`;
-  imagePreview.style.transform = `scale(${currentSize / 100})`;
+  inputScale.value = `${currentSize}%`;
+  userImagePreview.style.transform = `scale(${currentSize / 100})`;
 };
 
 const editCloseClick =  () => {
@@ -60,13 +63,13 @@ const showEditor = () => {
   document.body.classList.add('modal-open');
   imageEdit.classList.remove('hidden');
 
-  currentSize = MAX_SCALE_VALUE;
+  currentSize = biggestScale;
   setCurrentEffect(DEFAULT);
   newScale();
   updateImageFilter();
   hideSlider();
 
-  editorCloseButton.addEventListener('click', editCloseClick);
+  closeEditButton.addEventListener('click', editCloseClick);
   document.addEventListener('keydown', editEscapeKey);
 };
 
@@ -111,25 +114,25 @@ const showUploadErrorMessage = () => {
 };
 
 const moveAwayClick = () => {
-  if (currentSize !== MIN_SCALE_VALUE) {
-    currentSize -= IMAGE_SCALE_STEP;
+  if (currentSize !== smallestScale) {
+    currentSize -= scaleStepValue;
     newScale();
   }
 };
 
 const moveCloserClick = () => {
-  if (currentSize !== MAX_SCALE_VALUE) {
-    currentSize += IMAGE_SCALE_STEP;
+  if (currentSize !== biggestScale) {
+    currentSize += scaleStepValue;
     newScale();
   }
 };
 
-scaleDecreaseButton.addEventListener('click', moveAwayClick);
-scaleIncreaseButton.addEventListener('click', moveCloserClick);
+biggerScale.addEventListener('click', moveAwayClick);
+smallerScale.addEventListener('click', moveCloserClick);
 
 const clearForm = () => {
   uploadImage.reset();
-  currentSize = MAX_SCALE_VALUE;
+  currentSize = biggestScale;
   setCurrentEffect(DEFAULT);
   newScale();
   updateImageFilter();
@@ -142,12 +145,24 @@ function closeEdit (clear = true) {
   if (clear) {
     clearForm();
   }
-  editorCloseButton.removeEventListener('click', editCloseClick);
+  closeEditButton.removeEventListener('click', editCloseClick);
   document.removeEventListener('keydown', editEscapeKey);
 }
 
+const setMinis = () => {
+  const urlObject =  URL.createObjectURL(userImageInput.files[0]);
+  document.querySelector('.effects__preview--none').style.backgroundImage = "url('" + urlObject + "')";
+  document.querySelector('.effects__preview--chrome').style.backgroundImage = "url('" + urlObject + "')";
+  document.querySelector('.effects__preview--sepia').style.backgroundImage = "url('" + urlObject + "')";
+  document.querySelector('.effects__preview--marvin').style.backgroundImage = "url('" + urlObject + "')";
+  document.querySelector('.effects__preview--phobos').style.backgroundImage = "url('" + urlObject + "')";
+  document.querySelector('.effects__preview--heat').style.backgroundImage = "url('" + urlObject + "')";
+};
+
 const imageUpload = () => {
   pristine.validate();
+  uploadPreview(userImagePreview, userImageInput);
+  setMinis();
   showEditor();
 };
 
@@ -170,4 +185,4 @@ document.querySelector('#upload-select-image').addEventListener('submit', (evt) 
     .finally(() => document.querySelector('#upload-submit').removeAttribute('disabled'));
 });
 
-imageInputField.addEventListener('change', imageUpload);
+userImageInput.addEventListener('change', imageUpload);
