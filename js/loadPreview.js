@@ -76,7 +76,7 @@ const selectEffect = (name) => {
   effectLevel.parentElement.classList.toggle('hidden', name === Effect.NONE);
 };
 
-const onScaleSwitchClick = (event) => {
+const scaleSwitchClick = (event) => {
   const [less, input, more] = scale.querySelectorAll('input, button');
   const degree = Number.parseFloat(input.getAttribute('value'));
 
@@ -90,7 +90,7 @@ const onScaleSwitchClick = (event) => {
   }
 };
 
-const onEffectSwitch = (event) => {
+const effectSwitch = (event) => {
   const name = event.target.getAttribute('value');
   selectEffect(name);
 };
@@ -104,8 +104,8 @@ const updatePreview = (data) => {
   imgLoad(URL.createObjectURL(data));
   scaleSwitch(Scale.MAX);
   selectEffect(Effect.NONE);
-  scale.addEventListener('click', onScaleSwitchClick);
-  Effectselector.addEventListener('change', onEffectSwitch);
+  scale.addEventListener('click', scaleSwitchClick);
+  Effectselector.addEventListener('change', effectSwitch);
   effectSlider.on('update', effectSwitched);
 };
 
