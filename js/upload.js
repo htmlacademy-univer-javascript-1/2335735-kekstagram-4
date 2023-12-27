@@ -33,7 +33,7 @@ const sendFormData = async () => {
     await call(url, {method, body: frame});
     form.resetButton.click();
     bigPictureState('success');
-  }
+  } 
   catch (exception) {
     bigPictureState('error');
   }
@@ -60,6 +60,8 @@ const onFormSubmit = (event) => {
 const onFormReset = () => {
   pristine.reset();
 };
+
+
 
 decriptionValidator( 'Длина описания не должна превышать 140 символов',
   (description) => description.length <= 140
