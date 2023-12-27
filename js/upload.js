@@ -1,7 +1,7 @@
 import {call} from './util.js';
-import bigPictureState from './bigPictureState.js';
-import updatePreview from './loadPreview.js';
-import bigPictureOpened from './closeEvents.js';
+import bigPictureState from './big-picture-state.js';
+import updatePreview from './load-preview.js';
+import bigPictureOpened from './close-events.js';
 
 const form = document.querySelector('.img-upload__form');
 const popup = form.querySelector('.img-upload__overlay');
@@ -33,7 +33,7 @@ const sendFormData = async () => {
     await call(url, {method, body: frame});
     form.resetButton.click();
     bigPictureState('success');
-  } 
+  }
   catch (exception) {
     bigPictureState('error');
   }

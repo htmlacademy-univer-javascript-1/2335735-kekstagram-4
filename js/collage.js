@@ -1,5 +1,5 @@
-import previewLoad from './bigPicture.js';
-import bigPictureOpened from './closeEvents.js';
+import previewLoad from './big-picture.js';
+import bigPictureOpened from './close-events.js';
 import {debounce} from './util.js';
 
 const filtersNav = document.querySelector('.img-filters');
