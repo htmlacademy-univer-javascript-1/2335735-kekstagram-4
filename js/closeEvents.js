@@ -1,4 +1,4 @@
-const onEscBtnClick = (event) =>{
+const escBtnClicked = (event) =>{
   const escKey = event.key.startsWith('Esc');
   const input = event.target.matches('input[type="text"], textarea');
 
@@ -9,12 +9,12 @@ const onEscBtnClick = (event) =>{
   }
 };
 
-const onCancelBtnClick = (event) => {
+const cancelBtnClicked = (event) => {
   const bigPicture = event.target.closest('.overlay');
   bigPicture.classList.add('hidden');
 
   document.body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onEscBtnClick);
+  document.removeEventListener('keydown', escBtnClicked);
 };
 
 const bigPictureOpened = (popup) => {
@@ -22,10 +22,10 @@ const bigPictureOpened = (popup) => {
 
   popup.classList.remove('hidden');
   popup.scroll(0, 0);
-  cancelBtn.addEventListener('click', onCancelBtnClick);
+  cancelBtn.addEventListener('click', cancelBtnClicked);
 
   document.body.classList.add('modal-open');
-  document.addEventListener('keydown', onEscBtnClick);
+  document.addEventListener('keydown', escBtnClicked);
 };
 
 export default bigPictureOpened;

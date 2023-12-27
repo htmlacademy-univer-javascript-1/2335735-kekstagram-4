@@ -1,7 +1,7 @@
 import {call} from './util.js';
-import bigPictureState from './big-picture-state.js';
-import updatePreview from './load-preview.js';
-import bigPictureOpened from './close-events.js';
+import bigPictureState from './bigPictureState.js';
+import updatePreview from './loadPreview.js';
+import bigPictureOpened from './closeEvents.js';
 
 const form = document.querySelector('.img-upload__form');
 const popup = form.querySelector('.img-upload__overlay');
@@ -41,7 +41,7 @@ const sendFormData = async () => {
   form.submitButton.removeAttribute('disabled');
 };
 
-const onFormSwitch = (event) => {
+const formSwitch = (event) => {
   if(event.target === form.filename) {
     const data = event.target.files.item(0);
     updatePreview(data);
@@ -49,7 +49,7 @@ const onFormSwitch = (event) => {
   }
 };
 
-const onFormSubmit = (event) => {
+const formSubmit = (event) => {
   event.preventDefault();
 
   if(pristine.validate()) {
@@ -57,7 +57,7 @@ const onFormSubmit = (event) => {
   }
 };
 
-const onFormReset = () => {
+const formReset = () => {
   pristine.reset();
 };
 
@@ -87,6 +87,6 @@ hastagValidator( 'Не более 5 хэштегов',
   (tags) => tags.length <= 5
 );
 
-form.addEventListener('change', onFormSwitch);
-form.addEventListener('submit', onFormSubmit);
-form.addEventListener('reset', onFormReset);
+form.addEventListener('change', formSwitch);
+form.addEventListener('submit', formSubmit);
+form.addEventListener('reset', formReset);
