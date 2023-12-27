@@ -1,4 +1,4 @@
-const escBtnClicked = (event) => {
+const onEscBtnClicked = (event) => {
   if(event.key.startsWith('Esc')) {
     const popup = document.querySelector('.success, .error');
     popup.click();
@@ -6,10 +6,10 @@ const escBtnClicked = (event) => {
   }
 };
 
-const bigPictureClicked = (event) => {
+const onBigPictureClick = (event) => {
   if(event.target.matches('section, button')){
     event.currentTarget.remove();
-    document.removeEventListener('keydown', escBtnClicked, true);
+    document.removeEventListener('keydown', onEscBtnClicked, true);
   }
 };
 
@@ -21,8 +21,8 @@ const bigPictureState = (type, data = {}) => {
     popup.querySelector(`.${type}__${key}`).textContent = data[key];
   });
   
-  popup.addEventListener('click', bigPictureClicked);
-  document.addEventListener('keydown', escBtnClicked, true);
+  popup.addEventListener('click', onBigPictureClick);
+  document.addEventListener('keydown', onEscBtnClicked, true);
   document.body.append(popup);
 };
 

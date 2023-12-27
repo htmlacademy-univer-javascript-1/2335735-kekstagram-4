@@ -1,5 +1,5 @@
-import previewLoad from './bigPicture.js';
-import bigPictureOpened from './closeEvents.js';
+import previewLoad from './big-picture.js';
+import bigPictureOpened from './close-events.js';
 import {debounce} from './util.js';
 
 const filtersNav = document.querySelector('.img-filters');
@@ -32,7 +32,7 @@ const loadPictures = (data) => {
   collage.append(...newPictures);
 };
 
-const filtersNavClick = (event) => {
+const onFiltersNavClick = (event) => {
   const activeBtn = event.target.closest('button');
 
   if (!activeBtn) {
@@ -48,7 +48,7 @@ const filtersNavClick = (event) => {
 };
 
 
-const filtersNavSwitch = debounce((event) => {
+const onFiltersNavSwitch = debounce((event) => {
   const data = structuredClone(primaryDate);
 
   switch (event.target.getAttribute('id')) {
@@ -67,8 +67,8 @@ const filtersNavSwitch = debounce((event) => {
 const primaryCollage = (data) => {
   primaryDate = data;
   filtersNav.classList.remove('img-filters--inactive');
-  filtersNav.addEventListener('click', filtersNavClick);
-  filtersNav.addEventListener('change', filtersNavSwitch, true);
+  filtersNav.addEventListener('click', onFiltersNavClick);
+  filtersNav.addEventListener('change', onFiltersNavSwitch, true);
   loadPictures(data);
 };
 

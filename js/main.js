@@ -1,6 +1,6 @@
 import {call} from './util.js';
 import primaryCollage from './collage.js';
-import bigPictureState from './bigPictureState.js';
+import bigPictureState from './big-picture-state.js';
 import './upload.js';
 
 const url = 'https://29.javascript.pages.academy/kekstagram/data';
