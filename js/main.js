@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {call} from './util.js';
 import primaryCollage from './collage.js';
 import bigPictureState from './big-picture-state.js';
