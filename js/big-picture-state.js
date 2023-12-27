@@ -20,7 +20,7 @@ const bigPictureState = (type, data = {}) => {
   Object.keys(data).forEach((key) => {
     popup.querySelector(`.${type}__${key}`).textContent = data[key];
   });
-
+  
   popup.addEventListener('click', onBigPictureClick);
   document.addEventListener('keydown', onEscBtnClicked, true);
   document.body.append(popup);
