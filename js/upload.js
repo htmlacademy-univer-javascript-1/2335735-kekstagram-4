@@ -61,8 +61,6 @@ const formReset = () => {
   pristine.reset();
 };
 
-
-
 decriptionValidator( 'Длина описания не должна превышать 140 символов',
   (description) => description.length <= 140
 );
